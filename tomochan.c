@@ -74,7 +74,7 @@ int main (int argc, char ** argv)
 
     /* skip command path */
     argc--; argv++;
-    if (imgfmt && argc > 1) { /* "(i:(png|jpg))?" */
+    if (imgfmt && argc > 1) { /* "(?i:(png|jpg))?" */
         argc--;
         argv++;
     }
@@ -101,7 +101,7 @@ int main (int argc, char ** argv)
                 "https://sai-zen-sen.jp/comics/twi4/tomochan/works/tw/%04d.png",
                 *i);
 
-        res = res && download_page(curl, url, fname);
+        res = download_page(curl, url, fname) && res;
     }
 
     curl_easy_cleanup(curl);
